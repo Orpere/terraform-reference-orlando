@@ -157,4 +157,38 @@ resource "null_resource" "web" { # define a null_resource
  ```
 
 ## Provisioner
+[Provisioners can be used to model specific actions on the local machine or on a remote machine in order to prepare servers or other infrastructure objects for service.](https://www.terraform.io/docs/provisioners/index.html)
 
+NOTE: one my opinion is the way terraform uses to interact with external software or create connections to the infrastructure. as example Terraform has Built-in Provisioners:
+
+  1) [chef Provisioner](https://www.terraform.io/docs/provisioners/chef.html)
+  2) [file Provisioner](https://www.terraform.io/docs/provisioners/file.html)
+  3) [habitat Provisioner](https://www.terraform.io/docs/provisioners/habitat.html)
+  4) [local-exec Provisioner](https://www.terraform.io/docs/provisioners/local-exec.html)
+  5) [puppet Provisioner](https://www.terraform.io/docs/provisioners/puppet.html)
+  6) [remote-exec Provisioner](https://www.terraform.io/docs/provisioners/remote-exec.html)
+  7) [salt-masterless Provisioner](https://www.terraform.io/docs/provisioners/salt-masterless.html)
+
+example: module_web
+
+```terraform
+resource "aws_instance" "web" {
+  count = "${var.instance_count}"
+  # count initiate the default variable count as value 2 
+}
+
+resource "null_resource" "web" {
+  ami           = "${var.ami_id}"
+  instance_type = "${var.instance_type}"
+  connection {
+    host = "${aws_instance.web.public_ip}"
+  }
+
+  tags = {
+    Name = "web ${var.instance_count.index+1}/${var.instance_count}"
+  }
+   provisioner "local-exec" {
+    command = "echo ${aws_instance.web.private_ip} >> my_infrastructure.txt" # this will add the ip to the terrafom local machine
+  }
+}
+```
