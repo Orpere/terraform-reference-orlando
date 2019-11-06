@@ -100,6 +100,7 @@ Folder structure
 ## Providers
 
 Providers are plugins which give to terraform the capacity of interact with the infrastructure APIs, is the way of create,destroy,update or just take meta information from the servers or cloud providers.
+For a complete list of providers you can check the [link](https://www.terraform.io/docs/providers/index.html)
 
 ## Random Providers
 
