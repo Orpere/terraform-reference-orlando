@@ -5,7 +5,7 @@ resource "aws_instance" "web" {
 
 resource "null_resource" "web" {
   ami           = "${var.ami_id}"
-  instance_type = "${instance_type}"
+  instance_type = "${var.instance_type}"
   connection {
     host = "${aws_instance.web.public_ip}"
   }
