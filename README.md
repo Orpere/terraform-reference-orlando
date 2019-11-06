@@ -222,3 +222,31 @@ resource "aws_instance" "web" {
   # count initiate the default variable count as value 2
 }
 ```
+
+## State
+
+State is the terraform way how to map the real world resources to your configuration.
+It is stored by default in a local file named "terraform.tfstate" and also can be stored remotely with a lock feature or not which will be better for team environnement.
+Terraform uses the local state to create plans and make changes to the infrastructure.
+before any operation terraform will refresh to update the state with the real infrastructure.
+
+Propose of State:
+Note: is better explain on the [link](https://www.terraform.io/docs/state/purpose.html)
+1) Mapping the real world
+2) record Metadata
+3) Performance
+4) Syncing
+
+base on the [movie](https://hashicorp.wistia.com/medias/mw1j4apa81) the follow table show the State action
+
+
+|Configuration   |  state |  Reality | Operation  |
+|---|---|---|---|---|
+| aws-instance.web  |   |   | Create  |
+| aws-instance.web  | aws-instance.web  |   | create  |
+| aws-instance.web| aws-instance.web  | aws-instance.web  | noop  |
+|   | aws-instance.web  | aws-instance.web  | delete  |
+| |  | aws-instance.web  | noop  |
+| aws-instance.web|  | aws-instance.web  | re-create |
+| | aws-instance.web  |  | update state  |
+
