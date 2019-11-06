@@ -232,6 +232,7 @@ before any operation terraform will refresh to update the state with the real in
 
 Propose of State:
 Note: is better explain on the [link](https://www.terraform.io/docs/state/purpose.html)
+
 1) Mapping the real world
 2) record Metadata
 3) Performance
