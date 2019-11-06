@@ -1,6 +1,6 @@
 # Terraform learning exercise
 
- note: the links on the document show where the quotation were taken from 
+ note: the links on the document show where the quotation were taken from
 
 ## What terraform is?
 
@@ -32,14 +32,17 @@ variable "instance_type" {}
 ```
 
 a variable must be defined and the values can be defined on other file as terraform.tfvars
+
 ```terraform
 instance_count = "2"
 ami_id         = " " # it should be a valid ami
 instance_type  = " " # should be a valid type
 ```
+
 Note: default variables have low precedence. which can be override by CLI
 
 ## Outputs
+
 Is a feature to display metadata we can also say is other type of variable. It can be used to extract informative metadata from terraform or for interpolation
 
 example:
@@ -57,6 +60,7 @@ output "server_id" {
  ```
 
 ## Modules
+
 Modules are self contain packages in terraform and are used to reuse code.
 Modules must be defined on the root main.tf as terraform can't see any of the configurations inside the module with out the right path.
 The way how terraform can see meta information from the module is using the module outputs.
@@ -98,9 +102,11 @@ Folder structure
 Providers are plugins which give to terraform the capacity of interact with the infrastructure APIs, is the way of create,destroy,update or just take meta information from the servers or cloud providers.
 
 ## Random Providers
+
 Random Providers permit us to use the terraform logical with out interfere directly with the infrastructure as example it can attribute random values to variables.
 
 we know the follow resources:
+
 1) [random_id](https://www.terraform.io/docs/providers/random/r/id.html)
 2) [random_integer](https://www.terraform.io/docs/providers/random/r/integer.html)
 3) [random_password](https://www.terraform.io/docs/providers/random/r/password.html)
@@ -112,6 +118,7 @@ we know the follow resources:
 Note: [for more information](https://www.terraform.io/docs/providers/index.html)
 
 example: the random_pet module which will tag the server on this case with a pet name like "web-server-dog"
+
 ```terraform
 resource "random_pet" "server" {
   keepers = {
@@ -157,6 +164,7 @@ resource "null_resource" "web" { # define a null_resource
  ```
 
 ## Provisioner
+
 [Provisioners can be used to model specific actions on the local machine or on a remote machine in order to prepare servers or other infrastructure objects for service.](https://www.terraform.io/docs/provisioners/index.html)
 
 NOTE: on my opinion is the way terraform uses to interact with external software or create connections to the infrastructure. as example Terraform has Built-in Provisioners:
