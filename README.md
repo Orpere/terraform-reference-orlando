@@ -239,14 +239,12 @@ Note: is better explain on the [link](https://www.terraform.io/docs/state/purpos
 
 base on the [movie](https://hashicorp.wistia.com/medias/mw1j4apa81) the follow table show the State action
 
-
-|Configuration   |  state |  Reality | Operation  |
-|---|---|---|---|---|
-| aws-instance.web  |   |   | Create  |
-| aws-instance.web  | aws-instance.web  |   | create  |
-| aws-instance.web| aws-instance.web  | aws-instance.web  | noop  |
-|   | aws-instance.web  | aws-instance.web  | delete  |
-| |  | aws-instance.web  | noop  |
-| aws-instance.web|  | aws-instance.web  | re-create |
-| | aws-instance.web  |  | update state  |
-
+**Configuration**|**State**|**Reality**|**Operation**
+:-----:|:-----:|:-----:|:-----:
+aws-instance.web | | |Create
+aws-instance.web |aws-instance.web | |Create
+aws-instance.web |aws-instance.web |aws-instance.web |Noop
+ |aws-instance.web |aws-instance.web |Delete
+ | |aws-instance.web |Noop
+aws-instance.web | |aws-instance.web |Re-Create
+ |aws-instance.web | |Update State
