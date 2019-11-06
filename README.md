@@ -99,7 +99,8 @@ Providers are plugins which give to terraform the capacity of interact with the 
 
 ## Random Providers
 Random Providers permit us to use the terraform logical with out interfere directly with the infrastructure as example it can attribute random values to variables.
- we know the follow resources
+
+we know the follow resources:
 1) [random_id](https://www.terraform.io/docs/providers/random/r/id.html)
 2) [random_integer](https://www.terraform.io/docs/providers/random/r/integer.html)
 3) [random_password](https://www.terraform.io/docs/providers/random/r/password.html)
