@@ -201,3 +201,24 @@ resource "null_resource" "web" {
   }
 }
 ```
+
+## Meta-parameters or Meta-arguments
+
+Allow Terraform an high level of control flow and his life cycle
+It don't map direct to the cloud or API but helps Terraform to add some logical to his actions.
+
+1) [depends_on, for specifying hidden dependencies](https://www.terraform.io/docs/configuration/resources.html#depends_on-explicit-resource-dependencies)
+2) [count, for creating multiple resource instances according to a count](https://www.terraform.io/docs/configuration/resources.html#count-multiple-resource-instances-by-count)
+3) [for_each, to create multiple instances according to a map, or set of strings](https://www.terraform.io/docs/configuration/resources.html#for_each-multiple-resource-instances-defined-by-a-map-or-set-of-strings)
+4) [provider, for selecting a non-default provider configuration](https://www.terraform.io/docs/configuration/resources.html#provider-selecting-a-non-default-provider-configuration)
+5) [lifecycle, for lifecycle customizations](https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations)
+6) [provisioner and connection, for taking extra actions after resource creation](https://www.terraform.io/docs/configuration/resources.html#provisioner-and-connection-resource-provisioners)
+
+example: on module module_web > main.tf the meta parameter count is initiated by the variable instance_count
+
+```terraform
+resource "aws_instance" "web" {
+  count = "${var.instance_count}"
+  # count initiate the default variable count as value 2
+}
+```
