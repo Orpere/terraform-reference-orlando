@@ -20,7 +20,7 @@ Variables are used for:
 example :
 on module.web>variables.tf
 
-```
+```terraform
 variable "instance_count" {
   default     = "2"
   description = "count the number of instances"
@@ -32,7 +32,7 @@ variable "instance_type" {}
 ```
 
 a variable must be defined and the values can be defined on other file as terraform.tfvars
-```
+```terraform
 instance_count = "2"
 ami_id         = " " # it should be a valid ami
 instance_type  = " " # should be a valid type
@@ -45,7 +45,7 @@ Is a feature to display metadata we can also say is other type of variable. It c
 example:
  outputs.tf --> are getting servers public ip from the module_web and the server id from the module_pet
 
- ```
+ ```terraform
  output "public_ip" {
   value = "${module.module_web.web.public_ip}"
 }
@@ -64,8 +64,8 @@ The way how terraform can see meta information from the module is using the modu
 example:
 
 main.tf module definition
-```
 
+```terraform
 module "module_web" {
   source = "./module_web"
   
@@ -74,8 +74,10 @@ module "random_pet" {
   source = "./random_pet"
 }
 ```
-Folder structure 
-```
+
+Folder structure
+
+```bash
 .
 ├── README.md
 ├── main.tf
@@ -91,6 +93,7 @@ Folder structure
     └── variables.tf
 ```
 
+## Providers
 
 
 
