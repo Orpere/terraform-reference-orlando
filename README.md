@@ -95,7 +95,43 @@ Folder structure
 
 ## Providers
 
+Providers are plugins which give to terraform the capacity of interact with the infrastructure APIs, is the way of create,destroy,update or just take meta information from the servers or cloud providers.
 
+## Random Providers
+Random Providers permit us to use the terraform logical with out interfere directly with the infrastructure as example it can attribute random values to variables.
+ we know the follow resources
+1) [random_id](https://www.terraform.io/docs/providers/random/r/id.html)
+2) [random_integer](https://www.terraform.io/docs/providers/random/r/integer.html)
+3) [random_password](https://www.terraform.io/docs/providers/random/r/password.html)
+4) [random_pet](https://www.terraform.io/docs/providers/random/r/pet.html)
+5) [random_shuffle](https://www.terraform.io/docs/providers/random/r/shuffle.html)
+6) [random_string](https://www.terraform.io/docs/providers/random/r/string.html)
+7) [random_uuid](https://www.terraform.io/docs/providers/random/r/uuid.html)
+
+Note: [for more information](https://www.terraform.io/docs/providers/index.html)
+
+example: the random_pet module which will tag the server on this case with a pet name like "web-server-dog"
+```terraform
+resource "random_pet" "server" {
+  keepers = {
+    # Generate a new pet name each time we switch to a new AMI id
+    ami_id = "${var.ami_id}"
+  }
+   byte_length = 8
+}
+
+resource "aws_instance" "server" {
+  tags = {
+    Name = "web-server-${random_pet.server.id}"
+  }
+
+  # Read the AMI id "through" the random_pet resource to ensure that
+  # both will change together.
+  ami = "${random_pet.server.keepers.ami_id}"
+  # ... (other aws_instance arguments) ...
+
+}
+```
 
 these terraform files are using a null Provider
 
@@ -118,3 +154,6 @@ resource "null_resource" "web" { # define a null_resource
   }
 
  ```
+
+## Provisioner
+

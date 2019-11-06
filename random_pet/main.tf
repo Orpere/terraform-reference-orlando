@@ -3,6 +3,7 @@ resource "random_pet" "server" {
     # Generate a new pet name each time we switch to a new AMI id
     ami_id = "${var.ami_id}"
   }
+   byte_length = 8
 }
 
 resource "aws_instance" "server" {
