@@ -152,7 +152,7 @@ Null Provider
  ```terraform
 resource "aws_instance" "web" {  # i call it aws_instance to my better understanding but don't need to be aws it can be anything.
   count = "${var.instance_count}"
-  # count initiate the default variable count as value 2 
+  # count initiate the default variable count as value 2 as defined on variables.tf
 }
 
 resource "null_resource" "web" { # define a null_resource
