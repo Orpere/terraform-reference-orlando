@@ -244,7 +244,7 @@ base on the [movie](https://hashicorp.wistia.com/medias/mw1j4apa81) the follow t
 aws-instance.web | | |Create
 aws-instance.web |aws-instance.web | |Create
 aws-instance.web |aws-instance.web |aws-instance.web |Noop
- |aws-instance.web |aws-instance.web |Delete
- | |aws-instance.web |Noop
+| |aws-instance.web |aws-instance.web |Delete
+| | |aws-instance.web |Noop
 aws-instance.web | |aws-instance.web |Re-Create
- |aws-instance.web | |Update State
+| |aws-instance.web | |Update State
