@@ -2,7 +2,7 @@
 
  note: the links on the document show where the quotation were taken from
 
-## What terraform is?
+## What terraform is
 
 [Terraform is a tool for building, changing, and versioning infrastructure safely and efficiently.](https://www.terraform.io/intro/index.html)
 
@@ -183,7 +183,7 @@ example: module_web
 ```terraform
 resource "aws_instance" "web" {
   count = "${var.instance_count}"
-  # count initiate the default variable count as value 2 
+  # count initiate the default variable count as value 2
 }
 
 resource "null_resource" "web" {
@@ -197,7 +197,7 @@ resource "null_resource" "web" {
     Name = "web ${var.instance_count.index+1}/${var.instance_count}"
   }
    provisioner "local-exec" {
-    command = "echo ${aws_instance.web.public_ip} >> my_infrastructure.txt" # this will add the ip to the terrafom local machine
+    command = "echo ${aws_instance.web.public_ip} >> my_infrastructure.txt" # this will add the ip to the Terraform local machine
   }
 }
 ```
